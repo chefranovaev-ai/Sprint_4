@@ -1,5 +1,5 @@
-import Page.HomePage;
-import Page.OrderPage;
+import ru.samocat.page.HomePage;
+import ru.samocat.page.OrderPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;

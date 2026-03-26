@@ -1,5 +1,5 @@
-import Page.HomePage;
-import Page.OrderPage;
+import ru.samocat.page.HomePage;
+import ru.samocat.page.OrderPage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -9,11 +9,10 @@ import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class TestOrder extends BestUITest {
 
-    private String name, surname, address, metro, phone, date, period, color, comment;
-    private By locatorButtonOrder;
+    private String locationButton, name, surname, address, metro, phone, date, period, color, comment;
 
-    public TestOrder (By locatorButtonOrder, String name, String surname, String address, String metro, String phone, String date, String period, String color, String comment) {
-        this.locatorButtonOrder = locatorButtonOrder;
+    public TestOrder (String locationButton, String name, String surname, String address, String metro, String phone, String date, String period, String color, String comment) {
+        this.locationButton = locationButton;
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -24,11 +23,11 @@ public class TestOrder extends BestUITest {
         this.color = color;
         this.comment = comment;
     }
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные:{0} {1} {2}")
     public static Object[][] getTestData() {
         return new Object[][]{
-                { HomePage.orderButtonUp, "Елена", "Васильева", "Земляной Вал, 36", "Чкаловская", "89658763098", "25.03.2026", "сутки", "black", "Позвонить за час" },
-                { HomePage.orderButtonDown, "Владимир", "Нетудыхата", "проспект Мира 150", "ВДНХ", "89998765433", "01.04.2026", "двое суток", "grey", "У портье" }
+                { "верхняя", "Елена", "Васильева", "Земляной Вал, 36", "Чкаловская", "89658763098", "25.03.2026", "сутки", "black", "Позвонить за час" },
+                { "нижняя", "Владимир", "Нетудыхата", "проспект Мира 150", "ВДНХ", "89998765433", "01.04.2026", "двое суток", "grey", "У портье" }
         };
     }
 
@@ -36,7 +35,7 @@ public class TestOrder extends BestUITest {
     public void checkOrder() {
 
         homePage.acceptCookies();
-        homePage.clickOrderButton(locatorButtonOrder);
+        homePage.clickOrderButton(locationButton);
 
         OrderPage orderPage = new OrderPage(driver);
 
